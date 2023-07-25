@@ -1,0 +1,50 @@
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters input {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 250px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.card img {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.card h2 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.card strong {
+  font-weight: bold;
+}
