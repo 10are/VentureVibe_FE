@@ -8,16 +8,18 @@ function OrganizationCard() {
   const [country, setCountry] = useState('');
   const [businessType, setBusinessType] = useState('');
   const [employeeCount, setEmployeeCount] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 2;
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/organization/')
+    axios.get(`http://127.0.0.1:8000/api/organization/?page=${currentPage}`)
       .then(response => {
-        setOrganizations(response.data);
+        setOrganizations(response.data.results);
       })
       .catch(error => {
         console.error('There was an error retrieving the data!', error);
       });
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     let filteredOrganizations = organizations.filter(org => {
@@ -47,8 +49,13 @@ function OrganizationCard() {
     setDisplayedOrganizations(filteredOrganizations);
   }, [country, businessType, employeeCount, organizations]);
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="container">
+      <h1 className="title">Organization List</h1>
       <div className="filters">
         <input type="text" placeholder="Country" onChange={(e) => setCountry(e.target.value)} />
         <input type="text" placeholder="Business Type" onChange={(e) => setBusinessType(e.target.value)} />
@@ -58,7 +65,7 @@ function OrganizationCard() {
       <div className="cards">
         {displayedOrganizations.map(org => (
           <div key={org.id} className="card">
-            <img src={org.logo} alt={org.name} />
+            <img src={org.logo} />
             <h2>{org.name}</h2>
             <p><strong>Business Type:</strong> {org.business_type}</p>
             <p><strong>Country:</strong> {org.country}</p>
@@ -66,6 +73,16 @@ function OrganizationCard() {
             <p><strong>Employees:</strong> {org.employee_count}</p>
           </div>
         ))}
+      </div>
+
+      <div className="pagination">
+        {currentPage > 1 && (
+          <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+        )}
+
+        {currentPage < 10 && (
+          <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+        )}
       </div>
     </div>
   );
