@@ -17,8 +17,23 @@ function LoginForm() {
     })
     .then(response => {
         console.log(response.data);
-        localStorage.setItem('authToken', response.data.key); // Store the authentication token in local storage
-        navigate('/');
+        localStorage.setItem('authToken', response.data.key); 
+
+       
+        axios.get('http://127.0.0.1:8000/dj-rest-auth/user/', {
+          headers: {
+            Authorization: `Token ${response.data.key}`
+          }
+        })
+        .then(userResponse => {
+          console.log(userResponse.data);
+          localStorage.setItem('username', userResponse.data.username); 
+          navigate('/');
+        })
+        .catch(error => {
+          console.error('Error fetching user data', error);
+          navigate('/');
+        });
     })
     .catch(error => {
         console.error('There was an error!', error);

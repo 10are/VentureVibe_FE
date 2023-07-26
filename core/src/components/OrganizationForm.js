@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../style/OrganizationForm.css"; // Stil dosyasını içe aktar
 const countriesData = require("./countries.json");
 
 function OrganizationForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     logo: null,
@@ -45,7 +48,10 @@ function OrganizationForm() {
           },
         }
       );
+
       console.log("Organization created successfully!", response.data);
+
+      navigate("/organization");
     } catch (error) {
       console.error("Error creating organization", error);
     }
@@ -58,69 +64,78 @@ function OrganizationForm() {
   };
 
   return (
-    <div>
-      <h2>Create Organization</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Logo:
-          <input type="file" name="logo" onChange={handleFileChange} />
-        </label>
-        <br />
-        <label>
-          Business Type:
-          <select name="business_type" onChange={handleChange}>
-            <option value="">Select Business Type</option>
-            <option value="sole">Şahıs</option>
-            <option value="large">Büyük işletme</option>
-            <option value="sme">KOBİ</option>
-            <option value="ngo">STK</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Country:
-          <select name="country" onChange={handleChange}>
-            <option value="">Select Country</option>
-            {countriesData.countries.map((country) => (
-              <option key={country.value} value={country.value}>
-                {country.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Website:
-          <input
-            type="text"
-            name="website"
-            value={formData.website}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Employee Count:
-          <input
-            type="number"
-            name="employee_count"
-            value={formData.employee_count}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <button type="submit">Create Organization</button>
-      </form>
+    <div className="container">
+      <div className="form-container">
+        <h2 className="form-title">Create Organization</h2>
+        <form onSubmit={handleSubmit}>
+          <label className="form-label">
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </label>
+          <label className="form-label">
+            Logo:
+            <input type="file" name="logo" onChange={handleFileChange} />
+          </label>
+          <label className="form-label">
+            Business Type:
+            <select
+              name="business_type"
+              onChange={handleChange}
+              className="form-input"
+            >
+              <option value="">Select Business Type</option>
+              <option value="sole">Şahıs</option>
+              <option value="large">Büyük işletme</option>
+              <option value="sme">KOBİ</option>
+              <option value="ngo">STK</option>
+            </select>
+          </label>
+          <label className="form-label">
+            Country:
+            <select
+              name="country"
+              onChange={handleChange}
+              className="form-input"
+            >
+              <option value="">Select Country</option>
+              {countriesData.countries.map((country) => (
+                <option key={country.value} value={country.value}>
+                  {country.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="form-label">
+            Website:
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </label>
+          <label className="form-label">
+            Employee Count:
+            <input
+              type="number"
+              name="employee_count"
+              value={formData.employee_count}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </label>
+          <button type="submit" className="form-button">
+            Create Organization
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

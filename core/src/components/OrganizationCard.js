@@ -87,7 +87,7 @@ function OrganizationCard() {
           <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
         )}
 
-        {currentPage < 10 && (
+        {currentPage < 20000 && (
           <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         )}
       </div>
