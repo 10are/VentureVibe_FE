@@ -17,6 +17,7 @@ function OrganizationCard() {
   const [employeeCount, setEmployeeCount] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 2;
+  const userToken = JSON.parse(localStorage.getItem('user'))?.token || ''; // Get user token from localStorage
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/organization/?page=${currentPage}`)
@@ -60,7 +61,31 @@ function OrganizationCard() {
     setCurrentPage(pageNumber);
   };
 
-  return (
+  const handleVote = (organizationId, rating) => {
+    axios.post(`http://127.0.0.1:8000/api/organizationrating/`, {
+      organization: organizationId,
+      rating: 1,
+      user: userToken,
+    })
+    .then(response => {
+      console.log('Vote success!', response.data);
+      const updatedOrganizations = organizations.map(org => {
+        if (org.id === organizationId) {
+          if (rating === 'like') {
+            return { ...org, likes: (org.likes || 0) + 1 };
+          } else if (rating === 'dislike') {
+            return { ...org, dislikes: (org.dislikes || 0) + 1 };
+          }
+        }
+        return org;
+      });
+      setOrganizations(updatedOrganizations);
+    })
+    .catch(error => {
+      console.error('Error voting!', error);
+    });
+  };
+return (
     <div className="container">
       <h1 className="title">Organization List</h1>
       <div className="filters">
@@ -72,12 +97,23 @@ function OrganizationCard() {
       <div className="cards">
         {displayedOrganizations.map(org => (
           <div key={org.id} className="card">
-            <img src={org.logo} />
+            <img src={org.logo} alt={org.name} />
             <h2>{org.name}</h2>
             <p><strong>Business Type:</strong> {BUSINESS_TYPE_LABELS[org.business_type]}</p>
             <p><strong>Country:</strong> {org.country}</p>
-            <p><strong>Website:</strong> <a href={org.website} target="_blank">{org.website}</a></p>
+            <p><strong>Website:</strong> <a href={org.website} target="_blank" rel="noopener noreferrer">{org.website}</a></p>
             <p><strong>Employees:</strong> {org.employee_count}</p>
+            <p><strong>Likes:</strong> {org.likes || 0}</p>
+            <p><strong>Dislikes:</strong> {org.dislikes || 0}</p>
+
+            <div className="actions">
+              <button className="action-button" onClick={() => handleVote(org.id, 'like')}>
+                <i className="fas fa-thumbs-up"></i> Like
+              </button>
+              <button className="action-button" onClick={() => handleVote(org.id, 'dislike')}>
+                <i className="fas fa-thumbs-down"></i> Dislike
+              </button>
+            </div>
           </div>
         ))}
       </div>
