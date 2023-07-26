@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Organization from "./pages/Organization";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 
@@ -18,6 +19,7 @@ function  App() {
       <Route path="/organization" element={<Organization />} />
       <Route path="/register" element={<Register />} />
     </Routes>
+    <Footer />
     </>
   )
 }
