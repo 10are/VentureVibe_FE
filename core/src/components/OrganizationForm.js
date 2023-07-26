@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../style/OrganizationForm.css"; // Stil dosyasını içe aktar
+import "../style/OrganizationForm.css"; 
 const countriesData = require("./countries.json");
 
 function OrganizationForm() {
@@ -27,7 +27,7 @@ function OrganizationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("logo", formData.logo);
@@ -35,7 +35,7 @@ function OrganizationForm() {
     formDataToSend.append("country", formData.country);
     formDataToSend.append("website", formData.website);
     formDataToSend.append("employee_count", formData.employee_count);
-
+  
     try {
       const csrfToken = getCookie("csrftoken");
       const response = await axios.post(
@@ -48,12 +48,13 @@ function OrganizationForm() {
           },
         }
       );
-
+  
       console.log("Organization created successfully!", response.data);
-
+  
       navigate("/organization");
     } catch (error) {
       console.error("Error creating organization", error);
+      alert("Doğru bir url yazdığına emin misin?");
     }
   };
 
