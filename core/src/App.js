@@ -7,19 +7,17 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 
-
-function  App() { 
-
+function App() {
   return (
     <>
-    <Header />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/organization" element={<Organization />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
-    <Footer />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/organization" element={<Organization />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
     </>
   )
 }

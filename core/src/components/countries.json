@@ -1,0 +1,9 @@
+{
+    "countries": [
+      { "value": "TR", "label": "Türkiye" },
+      { "value": "US", "label": "Amerika Birleşik Devletleri" },
+      { "value": "DE", "label": "Almanya" },
+      { "value": "FR", "label": "Fransa" }
+    ]
+  }
+  

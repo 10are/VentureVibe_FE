@@ -17,7 +17,8 @@ function LoginForm() {
     })
     .then(response => {
         console.log(response.data);
-        navigate('/'); 
+        localStorage.setItem('authToken', response.data.key); // Store the authentication token in local storage
+        navigate('/');
     })
     .catch(error => {
         console.error('There was an error!', error);
@@ -41,7 +42,5 @@ function LoginForm() {
     </div>
   );
 }
-
-
 
 export default LoginForm;
