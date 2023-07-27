@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../style/OrganizationForm.css"; 
+import config from '../config';
+
 const countriesData = require("./countries.json");
 
 function OrganizationForm() {
@@ -39,7 +41,7 @@ function OrganizationForm() {
     try {
       const csrfToken = getCookie("csrftoken");
       const response = await axios.post(
-        "http://localhost:8000/api/organization/",
+        `${config.BASE_URL}api/organization/`,
         formDataToSend,
         {
           headers: {

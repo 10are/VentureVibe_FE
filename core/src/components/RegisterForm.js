@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../style/RegisterForm.css';
+import config from '../config';
+
 
 
 function RegisterForm() {
@@ -13,7 +15,7 @@ function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/dj-rest-auth/registration/', {
+    axios.post(`${config.BASE_URL}dj-rest-auth/registration/`, {
       email,
       password1,
       password2

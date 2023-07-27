@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../style/LoginForm.css';
+import config from '../config';
+
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,7 +13,7 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/dj-rest-auth/login/', {
+    axios.post(`${config.BASE_URL}dj-rest-auth/login/`, {
       email,
       password
     })
@@ -20,7 +22,7 @@ function LoginForm() {
         localStorage.setItem('authToken', response.data.key); 
 
        
-        axios.get('http://127.0.0.1:8000/dj-rest-auth/user/', {
+        axios.get(`${config.BASE_URL}dj-rest-auth/user/`, {
           headers: {
             Authorization: `Token ${response.data.key}`
           }

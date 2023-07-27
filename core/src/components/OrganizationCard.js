@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/OrganizationCard.css';
+import config from '../config';
+
 
 const BUSINESS_TYPE_LABELS = {
   'sole': 'Şahıs',
@@ -20,7 +22,7 @@ function OrganizationCard() {
   const userToken = JSON.parse(localStorage.getItem('user'))?.token || ''; // Get user token from localStorage
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/organization/?page=${currentPage}`)
+    axios.get(`${config.BASE_URL}api/organization/?page=${currentPage}`)
       .then(response => {
         setOrganizations(response.data.results);
       })
@@ -62,7 +64,7 @@ function OrganizationCard() {
   };
 
   const handleVote = (organizationId, rating) => {
-    axios.post(`http://127.0.0.1:8000/api/organizationrating/`, {
+    axios.post(`${config.BASE_URL}api/organizationrating/`, {
       organization: organizationId,
       rating: 1,
       user: userToken,

@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
+import config from '../config';
+
 
 const LogoutForm = () => {
   const handleLogout = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/dj-rest-auth/logout/");
+      await axios.post(`${config.BASE_URL}dj-rest-auth/logout/`); 
       localStorage.removeItem("authToken");
       localStorage.removeItem("username");
       window.location.reload();
