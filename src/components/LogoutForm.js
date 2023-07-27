@@ -6,7 +6,7 @@ import config from '../config';
 const LogoutForm = () => {
   const handleLogout = async () => {
     try {
-      await axios.post(`${config.BASE_URL}dj-rest-auth/logout/`); 
+      await axios.post(`${config.BASE_URL}dj-rest-auth/logout/`);
       localStorage.removeItem("authToken");
       localStorage.removeItem("username");
       window.location.reload();
