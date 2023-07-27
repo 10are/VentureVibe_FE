@@ -19,21 +19,20 @@ To run the project, you need to have the following software installed:
 
 ### Installation
 
-1. Clone the repository to your local machine:
+-  Clone the repository to your local machine:
 
 git clone https://github.com/10are/VentureVibe_FE.git
 
-
-2. Navigate to the project folder:
+- Navigate to the project folder:
 
 cd  VentureVibe_FE
 
-3. Install the required dependencies:
+- Install the required dependencies:
 
 npm install
 
 
-4. Start the application:
+- Start the application:
 
 npm start
 
