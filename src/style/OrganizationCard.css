@@ -7,19 +7,19 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
   font-family: 'Poppins', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  color: #007bff;
+  color: #04779b;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -36,6 +37,8 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
 }
 
 .cards {
@@ -44,27 +47,38 @@ body {
   gap: 20px;
 }
 
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 
 .card {
-  background-color: #f0f7ff;
+  background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
   transition: transform 0.3s ease-in-out;
-  flex-basis: calc(33.33% - 20px); 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start; 
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   margin-bottom: 10px;
 }
 
@@ -72,9 +86,9 @@ body {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: #007bff;
+  color: #333;
   margin-bottom: 10px;
-  text-align: left;
+  text-align: left; 
 }
 
 .card p {
@@ -82,16 +96,12 @@ body {
   color: #555;
   font-size: 14px;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .card strong {
   font-weight: bold;
   color: #333;
-}
-
-.card-divider {
-  margin-top: 15px;
-  border-top: 1px solid #ddd;
 }
 
 .pagination {
@@ -100,10 +110,10 @@ body {
 }
 
 .pagination button {
+  color: #fff;
   margin: 5px;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #04779b; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -113,32 +123,5 @@ body {
 }
 
 .pagination button:hover {
-  background-color: #0056b3;
-}
-
-
-
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.action-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.action-button i {
-  margin-right: 5px;
+  background-color: #035669; 
 }

@@ -9,16 +9,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #6c5ce7;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px 20px;
+  background-color: rgb(2, 119, 155);
   font-family: 'Poppins', sans-serif;
 }
 
 .nav-logo {
   color: #fff;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -28,38 +27,38 @@ body {
 }
 
 .nav-item {
-  margin-left: 25px;
+  margin-left: 20px;
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   transition: color 0.3s ease-in-out;
 }
 
 .nav-item:hover {
-  color: #fdcb6e;
+  color: rgb(0, 255, 191);
 }
 
 .hello {
   margin-right: 15px;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .logout-btn {
-  padding: 8px 15px;
-  background-color: #fdcb6e;
-  color: #6c5ce7;
+  padding: 6px 12px;
+  background-color: rgb(4, 168, 128);
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
 .logout-btn:hover {
-  background-color: #f7dc9f;
+  background-color: #15dc89; /* Zıt renk */
 }
