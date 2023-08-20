@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../style/OrganizationCard.css';
 import config from '../config';
 
-
 const BUSINESS_TYPE_LABELS = {
   'sole': 'Şahıs',
   'large': 'Büyük işletme',
@@ -18,7 +17,6 @@ function OrganizationCard() {
   const [businessType, setBusinessType] = useState('');
   const [employeeCount, setEmployeeCount] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 2;
 
   useEffect(() => {
     axios.get(`${config.BASE_URL}api/organization/?page=${currentPage}`)
@@ -74,11 +72,11 @@ function OrganizationCard() {
       <div className="cards">
         {displayedOrganizations.map(org => (
           <div key={org.id} className="card">
-            <img src={org.logo} />
+            <img src={org.logo} alt={`${org.name} Logo`} />
             <h2>{org.name}</h2>
             <p><strong>Business Type:</strong> {BUSINESS_TYPE_LABELS[org.business_type]}</p>
             <p><strong>Country:</strong> {org.country}</p>
-            <p><strong>Website:</strong> <a href={org.website} target="_blank">{org.website}</a></p>
+            <p><strong>Website:</strong> <a href={org.website} target="_blank" rel="noopener noreferrer">{org.website}</a></p>
             <p><strong>Employees:</strong> {org.employee_count}</p>
           </div>
         ))}
